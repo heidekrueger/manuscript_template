@@ -1,0 +1,64 @@
+% !TEX root = ./Main.tex
+\subsection{Auctions as Bayesian Games}
+
+    Let's start with some boilerplate text that shows how to use acronyms etc. Bold symbols in math can be written like this:
+    $u \rightarrow \bu. \bA x = \boldb$ 
+  
+		A Bayesian game of incomplete information is described by a quintuple $G = (N,\mathcal A, V,F,u)$. 
+    $N = \{1, \dots, n\}$ describes the set of players participating in the game. $\mathcal A = \mathcal A_1 \times \cdots \times \mathcal A_n$ is the set of possible action profiles, with $\mathcal A_i$ being the set of actions available to player $i \in N$. 
+    In auctions, $\mathcal{A}_i$ are typically continuous sets of bids $\mathcal{A}_i \subset \R$. 
+    $V = V_1 \times \cdots \times V_n$ is the set of \emph{type profiles}. 
+		At the beginning of the game, each player $i$ is informed of her own type $v_i\in V_i$ only, thus the type constitutes private information. 
+		Just as $\mathcal A_i$, the $V_i$ are (potentially continuous) subsets of $\mathbb{R}$. 
+		Both the individual action and type spaces might be multidimensional in the case of multi-object auctions. 
+    $F(v)$ defines a prior probability distribution over type profiles that is assumed to be common knowledge among all bidders in the Bayesian game. Each player's utility function is now determined by $u_i: \mathcal A \times V_i \rightarrow \R$, i.e. players' utilities depend on all other players' actions and only their own type.
+
+    In this paper we consider \emph{sealed-bid auctions} on $J$ items with $N$ participating bidders. For sake of brevity, we limit the formal description to single-item auctions, but the extension to multiple items is straightforward, as described below. Thus for now, let $J=1$.  In each auction, a \emph{valuation profile} $v \sim F$ is drawn, and each bidder $i$ observes her \emph{private valuation} $v_i \in \R_{\geq 0}$ of the item. Now, $i$ submits a bid $b_i$ chosen according to some (possibly stochastic) strategy function $\pi_i: V_i \rightarrow \Delta\mathcal A_i$ that maps valuations to a probability distribution over possible actions. When $\pi_i$ is known to be deterministic, i.e. returns a single action or bid $b_i$ with probability 1, we will simply write $\pi_i(v_i)=b_i$. Throughout this paper, we denote by the index $-i$ a profile of types, actions or strategies for all players but player $i$. The auctioneer collects these bids, applies some auction mechanism that determines (a) an allocation $a \in \left\{0,1\right\}^{N}$, with $a_{i}=1$ iff player $i$ wins the item or 0 otherwiese, and (b) payments $p\in \R^N$ that the players have to pay to the auctioneer. Given some risk-constants $r_i > 0$, we model the bidder's utilities by the \emph{risk-adjusted payoffs}
+    
+    $$u_i = \left(a_i\cdot v_i - p_i\right)^{r_i}$$
+
+
+    Here $r_i = 1$ corresponds to the risk-neutral case with quasilinear utility, whereas $r_i < 1$ indicates risk aversion. Most common auction mechanisms assign positive payments only when a player wins a desired item, i.e. $p_i > 0 \Leftrightarrow a_i=1$. In the case of multi-item combinatorial auctions, both private valuations and allocations are over \emph{bundles} of items and bids are mutlidimensional (depending on some \emph{bid language}). 
+
+    In summary, each player is tasked with choosing a strategy $\pi_i(v_i)$, given knowledge about $v_i$ while not knowing other players' valuations beyond the fact that they have been drawn from one a prior distribution $F(v_{-i}\ \vert\ v_i)$, which is accessible to $i$ as $F(v)$ is common knowledge. In multi-object auctions such as combinatorial auctions, we might have multiple prior distributions. How to choose this strategy $\pi_i$ is a central question in Bayesian Game Theory. 
+
+    
+    In non-cooperative game-theory, \acp{NE} \citep{nashEquilibriumPointsNperson1950} are a central solution concept. Informally, in NE no agent has an incentive to deviate, given the equilibrium strategy of all other agents. Therefore, once a NE is found, it forms stable state. BNE extend the standard notion of the \ac{NE} in complete-information games by calculating the expected utility over the distribution of opponent valuations $v_{-i}$ in the ex-interim state in addition to just the opponent's strategies $\pi_{-i}$.  
+
+    \Iac{BNE} is a strategy profile $\pi^*$ such that no player can improve her own ex-interim expected utility by deviating from it. Thus in \iac{BNE} the following holds for all players $i$ and all her possible types $v_i$ and strategies $\pi_i$:
+    \begin{equation*}
+        \exof{u_i\left(\pi_i(v_i), \pi^*_{-i}(v_{-i})\right) \given v_i} \leq \exof{u_i\left(\pi^*(v)\right) \given v_i}
+        %\expect[v_{-i}\vert v_i]{u_i\left(\pi_i(v_i), \pi^*_{-i}(v_{-i})\right)} \leq \expect[v_{-i}\vert v_i]{u_i\left(\pi^*(v)\right)}
+    \end{equation*}
+
+
+    Some conditional expectations:
+
+    \begin{equation*}
+      \exof{a \given b}
+    \end{equation*}
+
+    \begin{equation*}
+      \exofsub*{\mu}{\frac{a}{x} \given b}
+    \end{equation*}
+
+    Almost surely in text is \as and in math mode $\as$.
+    Almost everywhere in text is \ae and in math mode $\ae$.
+
+    In text mode $\exof{a \given b}$ end of bla $\exofsub{\mu}{\frac{a}{x} \given b}$
+    
+    Thus, in a BNE, every bidder's strategy maximizes his expected ex-interim utility given his beliefs about the state of nature and other players. Note that any strategy $\pi_i^*$ that is part of a \ac{BNE}-profile must also maximize $i$'s \emph{ex-ante} expected utility, which we will denote by $\bar u_i$:
+    $$\bar{u}_i(\pi_i, \pi_{-i}) = \exof{u_i(\pi_i(v_i), \pi_{-i}(v_{-i}))}$$
+
+
+    \begin{theorem}[Important Theorem]\label{thm:it}
+      This is a theorem. It even has a numbered equation.
+      \begin{equation}
+        a^2 + b^2 = c^2
+      \end{equation}
+    \end{theorem}
+
+
+\subsection{\acf{BNE} in concave games}
+
+Nothing here yet, except this citation from \ac{RL}: \citet{silverDeterministicPolicyGradient2014}.

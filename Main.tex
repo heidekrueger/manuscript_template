@@ -1,0 +1,850 @@
+%*************************************************************
+%*****    Stefan's LaTeX Template
+%****
+%*****    I took the original version of this template from 
+%****     https://arxiv.org/abs/1608.07310, i.e. from Panayotis Mertikopoulos.
+%****     I don't know, where it originated.
+%****
+%****     This version is customized by and for Stefan Heidekrüger.
+%****
+%*************************************************************
+
+%!TEX TS-program =  pdflatex
+
+
+%*************************************************************
+%*****    DOCUMENT CLASS
+%*************************************************************
+\documentclass[reqno]{amsart}
+
+
+
+%*************************************************************
+%*****    PACKAGES
+%*************************************************************
+
+%----------------------------------------------------------------------
+%% Basic math input
+%----------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[foot]{amsaddr}
+\usepackage{mathtools}
+\mathtoolsset{%
+%showonlyrefs,	% to show only referenced equations
+}
+
+
+%----------------------------------------------------------------------
+%% Fonts and alphabets (beware of conflicts)
+%----------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Minion Pro
+%----------------------------------------------------------------------
+%\linespread{1.05}
+%\usepackage[lf,minionint,openg,footnotefigures]{MinionPro}
+%\usepackage[bib,eqno,enum]{tabfigures}
+%\input glyphtounicode
+%\pdfgentounicode=1
+
+
+%% Baskerville
+%----------------------------------------------------------------------
+%\pdfmapfile{+baskervillef.map}
+%\usepackage[sups,p,theoremfont]{baskervillef}
+%\usepackage[varqu,varl,var0]{inconsolata}
+%\usepackage[scale=.95,type1]{cabin}
+%\usepackage[baskerville,vvarbb]{newtxmath}
+
+
+%% Libertine
+%----------------------------------------------------------------------
+\usepackage[sf,mono=false]{libertine}
+%\usepackage[libertine,libaltvw,cmintegrals]{newtxmath}
+
+
+%% Garamond
+%----------------------------------------------------------------------
+%\usepackage[full]{textcomp}
+%\usepackage{garamondx}
+%\usepackage[garamondx,cmintegrals,cmbraces]{newtxmath}
+%\useosf
+
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage{garamondx}
+
+%\usepackage[cmintegrals,cmbraces]{newtxmath}
+%\usepackage{ebgaramond-maths}
+%\makeatletter
+%\DeclareSymbolFont{cmletters}{OML}{cmr}{m}{it}
+%	\SetSymbolFont{cmletters}{bold}{OML}{cmr}{b}{it}
+%	\re@DeclareMathSymbol{\leftharpoonup}{\mathrel}{cmletters}{"28}
+%	\re@DeclareMathSymbol{\leftharpoondown}{\mathrel}{cmletters}{"29}
+%	\re@DeclareMathSymbol{\rightharpoonup}{\mathrel}{cmletters}{"2A}
+%	\re@DeclareMathSymbol{\rightharpoondown}{\mathrel}{cmletters}{"2B}
+%	\re@DeclareMathSymbol{\triangleleft}{\mathbin}{cmletters}{"2F}
+%	\re@DeclareMathSymbol{\triangleright}{\mathbin}{cmletters}{"2E}
+%	\re@DeclareMathSymbol{\partial}{\mathord}{cmletters}{"40}
+%	\re@DeclareMathSymbol{\flat}{\mathord}{cmletters}{"5B}
+%	\re@DeclareMathSymbol{\natural}{\mathord}{cmletters}{"5C}
+%	\re@DeclareMathSymbol{\star}{\mathbin}{cmletters}{"3F}
+%	\re@DeclareMathSymbol{\smile}{\mathrel}{cmletters}{"5E}
+%	\re@DeclareMathSymbol{\frown}{\mathrel}{cmletters}{"5F}
+%	\re@DeclareMathSymbol{\sharp}{\mathord}{cmletters}{"5D}
+%	\re@DeclareMathAccent{\vec}{\mathord}{cmletters}{"7E}
+%\makeatother
+
+
+%% Charter
+%----------------------------------------------------------------------
+%\usepackage[bitstream-charter]{mathdesign}
+
+%% Palatino (uncomment one, not both)
+%----------------------------------------------------------------------
+%\linespread{1.05}
+%\usepackage{newpxtext,newpxmath}
+%\usepackage[sc]{mathpazo}
+
+%% Times
+%----------------------------------------------------------------------
+%\usepackage[varg]{txfonts}
+%\let\mathbb=\varmathbb
+
+
+%% Blackboard bold
+%----------------------------------------------------------------------
+\usepackage{dsfont}
+%\let\mathbb=\mathds
+
+
+%% Sans serif font
+%----------------------------------------------------------------------
+%\usepackage[lf,scaled=.92]{carlito}
+%\usepackage[lf,scaled=.92]{sourcesanspro}
+
+
+%% Typewriter font
+%----------------------------------------------------------------------
+%\usepackage{sourcecodepro}
+
+
+%% Math alphabets
+%----------------------------------------------------------------------
+% For choosing style of math alphabets.
+% see http://ctan.math.washington.edu/tex-archive/macros/latex/contrib/mathalpha/doc/mathalpha-doc.pdf
+
+\usepackage[%
+cal=cm,
+%bb=fourier,
+%scr=euler,
+%frak=euler
+]
+{mathalfa}
+
+
+%----------------------------------------------------------------------
+%% Colors
+%----------------------------------------------------------------------
+\usepackage[dvipsnames,svgnames]{xcolor}
+\colorlet{MyBlue}{DodgerBlue!60!Black}
+\colorlet{MyGreen}{DarkGreen!85!Black}
+
+
+%----------------------------------------------------------------------
+%% Figures, Tables and Graphics
+%----------------------------------------------------------------------
+\usepackage[font=small,labelfont=bf]{caption}
+\captionsetup[algorithm]{labelfont={bf,sf,normalsize},labelsep=period}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{svg}
+
+\usepackage{booktabs} % For formal tables
+
+
+%----------------------------------------------------------------------
+%% Miscellaneous
+%----------------------------------------------------------------------
+
+% add `nolist` option if printing not desired.
+\usepackage[printonlyused,withpage]{acronym} % define acronyms an reference them with
+\usepackage{latexsym}
+\usepackage{nicefrac}
+\usepackage{paralist}
+\usepackage{wasysym}
+\usepackage{xspace}
+% used to check dynamically whether to print acronym section
+\makeatletter
+\@ifpackagewith{acronym}{nolist}
+    {\newcommand{\makeAcronymSection}{}}
+    {\newcommand{\makeAcronymSection}{\section{Acronyms}}} %print
+\makeatother
+%----------------------------------------------------------------------
+%% References
+%----------------------------------------------------------------------
+\usepackage[authoryear,compress]{natbib}
+\def\bibfont{\footnotesize}
+\def\bibsep{\smallskipamount}
+\def\bibhang{24pt}
+%\def\BIBand{and}
+%\def\newblock{\ }
+%\bibpunct[, ]{[}{]}{,}{n}{}{,}
+
+\newcommand{\citef}{\cite}
+\newcommand{\citefp}{\citep}
+\newcommand{\citepos}[1]{\citeauthor{#1}'s~\textpar{\citeyear{#1}}}
+%\newcommand{\citef}[2][]{\citeauthor{#2} \cite[#1]{#2}}
+%\newcommand{\citefp}[2][]{\textup(\citef[#1]{#2}\textup)}
+
+
+%----------------------------------------------------------------------
+%% Hyperlinks
+%----------------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+linktocpage=true,
+%pdfstartpage=1,
+pdfstartview=FitH,
+breaklinks=true,
+pdfpagemode=UseNone,
+pageanchor=true,
+pdfpagemode=UseOutlines,
+plainpages=false,
+bookmarksnumbered,
+bookmarksopen=false,
+bookmarksopenlevel=1,
+hypertexnames=true,
+pdfhighlight=/O,
+%hyperfootnotes=true,
+%nesting=true,
+%frenchlinks,
+urlcolor=MyBlue!60!black,linkcolor=MyBlue!70!black,citecolor=DarkGreen!70!black, % <--- for screen
+%urlcolor=black, linkcolor=black, citecolor=black, %pagecolor=black, % <--- for printing
+%pagecolor=RoyalBlue,
+pdftitle={},
+pdfauthor={},
+pdfsubject={},
+pdfkeywords={},
+pdfcreator={pdfLaTeX},
+pdfproducer={LaTeX with hyperref}
+}
+
+
+%----------------------------------------------------------------------
+%% Cleverefs
+%----------------------------------------------------------------------
+\numberwithin{equation}{section}  %numberwithin goes before cleverefs when using hyperref
+\usepackage[sort&compress,capitalize,nameinlink]{cleveref}
+%\crefname{example}{Ex.}{Exs.}
+\newcommand{\crefrangeconjunction}{\textendash}
+\crefrangeformat{equation}{\upshape(#3#1#4)\textendash(#5#2#6)}
+
+
+%*************************************************************
+%*****    MACROS
+%*************************************************************
+
+%----------------------------------------------------------------------
+%% Aliases
+%----------------------------------------------------------------------
+\newcommand{\dd}{\:d}
+\newcommand{\del}{\partial}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\from}{\colon}
+\newcommand{\injects}{\hookrightarrow}
+\newcommand{\pd}{\partial}
+\newcommand{\wilde}{\widetilde}
+
+\newcommand{\mg}{\succ}
+\newcommand{\mgeq}{\succcurlyeq}
+\newcommand{\ml}{\prec}
+\newcommand{\mleq}{\preccurlyeq}
+
+
+%----------------------------------------------------------------------
+%% Boldface
+%----------------------------------------------------------------------
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\boldb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\boldd}{\mathbf{d}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\boldf}{\mathbf{f}}
+\newcommand{\bg}{\mathbf{g}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bm}{\mathbf{m}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bo}{\mathbf{o}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bs}{\mathbf{s}}
+\newcommand{\bt}{\mathbf{t}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bz}{\mathbf{z}}
+
+
+%----------------------------------------------------------------------
+%% Fields
+%----------------------------------------------------------------------
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+%----------------------------------------------------------------------
+%% Operators
+%----------------------------------------------------------------------
+
+
+
+% Original List
+% a * means limits are typeset below, not on the right
+%      at least in display mode
+\DeclareMathOperator*{\aff}{aff}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\intersect}{\bigcap}
+\DeclareMathOperator*{\lip}{lip}
+\DeclareMathOperator*{\vspan}{span}
+\DeclareMathOperator*{\union}{\bigcup}
+
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\bigoh}{\mathcal{O}}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\eig}{eig}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator{\ex}{\mathbb{E}}
+\DeclareMathOperator{\grad}{\nabla}
+\DeclareMathOperator{\hess}{Hess}
+\DeclareMathOperator{\hull}{\Delta}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\one}{\mathds{1}}
+\DeclareMathOperator{\proj}{pr}
+\DeclareMathOperator{\prob}{\mathbb{P}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\rel}{rel}
+\DeclareMathOperator{\relint}{ri}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\vol}{vol}
+
+
+%----------------------------------------------------------------------
+%% Delimiters
+%----------------------------------------------------------------------
+\providecommand\given{} % provides an empty command for the delimiters below
+
+\DeclarePairedDelimiter{\braces}{\{}{\}}
+\DeclarePairedDelimiter{\bracks}{[}{]}
+\DeclarePairedDelimiter{\parens}{(}{)}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\dnorm}{\lVert}{\rVert_{\ast}}
+%\newcommand{\dnorm}[1]{\norm{#1}_{\ast}}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\clip}{[}{]}
+\DeclarePairedDelimiter{\negpart}{[}{]_{-}}
+\DeclarePairedDelimiter{\pospart}{[}{]_{+}}
+
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+%\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1\mathopen{}\hspace{1pt}\delimsize\vert\hspace{1pt}\mathopen{}#2}
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1,#2}
+
+\DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiterX{\setdef}[2]{\{}{\}}{#1:#2}
+
+% command \Set with scaled | using \given
+\newcommand\SetSymbol[1][]{%
+\nonscript\:#1\vert
+\allowbreak
+\nonscript\:
+\mathopen{}}
+\DeclarePairedDelimiterX\Set[1]\{\}{%
+\renewcommand\given{\SetSymbol[\delimsize]}
+#1
+}
+
+% Probability and conditional probability
+
+\DeclarePairedDelimiterXPP{\probof}[1]{\prob}{(}{)}{}{%
+\renewcommand\given{\nonscript\,\delimsize\vert\nonscript\,\mathopen{}}
+#1}
+
+% expectation and conditional expectation
+\DeclarePairedDelimiterXPP{\exof}[1]{\ex}{[}{]}{}{%
+\renewcommand\given{\nonscript\,\delimsize\vert\nonscript\,\mathopen{}}
+#1}
+
+% expectation and conditional expectation with explicit subscript
+\DeclarePairedDelimiterXPP{\exofsub}[2]{\ex_{#1}}{[}{]}{}{%
+    \renewcommand\given{\nonscript\,\delimsize\vert\nonscript\,\mathopen{}}#2}
+
+%    \newcommand{\expect}[2][]{\E_{#1}\left[#2\right]}
+
+%----------------------------------------------------------------------
+%% Formatting
+%----------------------------------------------------------------------
+\newcommand{\dis}{\displaystyle}
+\newcommand{\txs}{\textstyle}
+\newcommand{\textpar}[1]{\textup(#1\textup)}
+
+\newcommand{\as}{\textpar{\textrm{a.s.}}\xspace}
+\renewcommand{\ae}{\textpar{\textrm{a.e.}}\xspace}
+
+
+
+%*************************************************************
+%*****    EDITING
+%*************************************************************
+\usepackage[textwidth=30mm]{todonotes}
+%\setlength{\marginparwidth}{2cm}
+
+\newcommand{\todoi}[2][] {\vspace{0.5em}\todo[inline, #1]{#2}}
+
+\newcommand{\needref}{{\color{red} \upshape [\textbf{??}]}\xspace}
+\newcommand{\attn}{{\color{red} \upshape [\textbf{!!}]}\xspace}
+\newcommand{\revise}[1]{{\color{blue}#1}}
+%\newcommand{\debug}[1]{{\color{purple}#1}}
+\newcommand{\debug}[1]{#1}
+\newcommand{\lookout}[1]{{\color{red}#1}}
+
+
+\newcommand{\start}{\debug 1}
+\newcommand{\run}{\debug n}
+\newcommand{\iRun}{\debug k}
+
+
+
+
+%*************************************************************
+%*****    ENVIRONMENTS
+%*************************************************************
+
+%----------------------------------------------------------------------
+%% Algorithms
+%----------------------------------------------------------------------
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage[boxed, ruled,vlined, linesnumbered, commentsnumbered]{algorithm2e}
+
+
+%----------------------------------------------------------------------
+%% Theorem-like
+%----------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{\color{orange}Conjecture}
+
+
+%----------------------------------------------------------------------
+%% Definition-like
+%----------------------------------------------------------------------
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+
+
+%----------------------------------------------------------------------
+%% Proofs
+%----------------------------------------------------------------------
+\newenvironment{Proof}[1][Proof]{\begin{proof}[#1]}{\end{proof}}
+\renewcommand\qedsymbol{\small$\blacksquare$}
+
+
+%----------------------------------------------------------------------
+%% Remark-like
+%----------------------------------------------------------------------
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{notation*}{Notational remark}
+\newtheorem{example}{Example}
+
+
+%----------------------------------------------------------------------
+%% Numbering
+%----------------------------------------------------------------------
+\numberwithin{theorem}{section}
+\numberwithin{remark}{section}
+\numberwithin{example}{section}
+
+
+%*************************************************************
+%*****    FREQUENTLY USED
+%*************************************************************
+
+%----------------------------------------------------------------------
+%% Linear Algebra
+%----------------------------------------------------------------------
+\newcommand{\vecspace}{\mathcal{\debug V}}
+\newcommand{\dspace}{\vecspace^{\ast}}
+
+\newcommand{\bvec}{e}
+\newcommand{\dvec}{\bvec^{\ast}}
+
+
+%----------------------------------------------------------------------
+%% Convex Analysis
+%----------------------------------------------------------------------
+\newcommand{\body}{\mathcal{D}}
+\newcommand{\cvx}{\mathcal{C}}
+\newcommand{\feas}{\mathcal{\debug X}}
+\newcommand{\intfeas}{\feas^{\circ}}
+\newcommand{\primal}{\feas}
+\newcommand{\dual}{\mathcal{\debug Y}}
+
+\newcommand{\base}{\debug p}
+\newcommand{\notbase}{\debug x}
+\newcommand{\baseset}{\mathcal{C}}
+\newcommand{\obj}{f}
+\newcommand{\sol}{{\debug x}^{\ast}}
+\newcommand{\solset}{\feas^{\ast}}
+\newcommand{\subd}{\partial}
+
+\newcommand{\cone}{C}
+\newcommand{\thull}{T}
+\newcommand{\tcone}{\mathrm{TC}}
+\newcommand{\tspace}{\mathrm{T}}
+\newcommand{\dcone}{\tcone^{\ast}}
+\newcommand{\ncone}{\mathrm{NC}}
+\newcommand{\pcone}{\mathrm{PC}}
+
+
+%----------------------------------------------------------------------
+%% Bregman
+%----------------------------------------------------------------------
+\newcommand{\breg}{\debug D}
+\newcommand{\mirror}{\debug Q}
+\newcommand{\depth}{\debug \Omega}
+\newcommand{\fench}{\debug F}
+
+\newcommand{\choice}{\mirror}
+\DeclareMathOperator{\Eucl}{\Pi}
+\DeclareMathOperator{\logit}{\Lambda}
+
+
+%----------------------------------------------------------------------
+%% Games
+%----------------------------------------------------------------------
+\newcommand{\game}{\mathcal{\debug G}}
+\newcommand{\fingame}{\debug\Gamma}
+
+\newcommand{\play}{\debug i}
+\newcommand{\playalt}{\debug j}
+\newcommand{\nPlayers}{\debug N}
+\newcommand{\players}{\mathcal{\nPlayers}}
+
+\newcommand{\playOne}{\debug A}
+\newcommand{\playTwo}{\debug B}
+
+\newcommand{\pure}{\debug\alpha}
+\newcommand{\purealt}{\debug\beta}
+\newcommand{\nPures}{\debug A}
+\newcommand{\pures}{\mathcal{\debug\nPures}}
+\newcommand{\peq}{\pure^{\ast}}
+
+\newcommand{\act}{\debug X}
+\newcommand{\actions}{\feas}
+\newcommand{\acts}{\actions}
+\newcommand{\intacts}{\intfeas}
+
+\newcommand{\pay}{\debug u}
+\newcommand{\payv}{\debug v}
+\newcommand{\loss}{\ell}
+\newcommand{\cost}{c}
+\newcommand{\pot}{f}
+
+\newcommand{\est}{\hat\payv}
+\newcommand{\score}{\debug Y}
+
+\newcommand{\gamefull}{\game(\players,(\acts_{\play})_{\play\in\players},(\pay_{\play})_{\play\in\players})}
+\newcommand{\fingamefull}{\fingame(\players,(\pures_{\play})_{\play\in\players},(\pay_{\play})_{\play\in\players})}
+
+\newcommand{\eq}{\sol}
+\newcommand{\eqset}{\feas^{\ast}}
+\newcommand{\eqnhd}{U^{\ast}}
+\newcommand{\payveq}{\payv^{\ast}}
+\newcommand{\deq}{y^{\ast}}
+\newcommand{\olimit}{x_{\omega}}
+\newcommand{\dev}{\debug q}
+\newcommand{\val}{\pay^{\ast}}
+\newcommand{\gap}{\debug\epsilon}
+\newcommand{\length}{\ell}
+
+\DeclareMathOperator{\brep}{BR}
+%\DeclareMathOperator{\reg}{Reg}
+\newcommand{\reg}{\debug R}
+
+
+%----------------------------------------------------------------------
+%% Sundries
+%----------------------------------------------------------------------
+\newcommand{\argdot}{\,\cdot\,}
+\newcommand{\dkl}{D_{\textup{KL}}}
+\newcommand{\filter}{\mathcal{F}}
+\newcommand{\gen}{\mathcal{L}}
+\newcommand{\interval}{I}
+\newcommand{\simplex}{\Delta}
+\newcommand{\intsimplex}{\simplex^{\!\circ}}
+\newcommand{\set}{\mathcal{S}}
+\newcommand{\step}{\debug\gamma}
+\newcommand{\temp}{\eta}
+
+\newcommand{\nodes}{\mathcal{V}}
+\newcommand{\edge}{e}
+\newcommand{\nEdges}{E}
+\newcommand{\edges}{\mathcal{\nEdges}}
+
+\newcommand{\source}{s}
+\newcommand{\sources}{\mathcal{S}}
+\newcommand{\sink}{d}
+\newcommand{\sinks}{\mathcal{D}}
+
+\newcommand{\resource}{r}
+\newcommand{\nResources}{R}
+\newcommand{\resources}{\mathcal{\nResources}}
+\newcommand{\load}{w}
+
+\newcommand{\route}{\pure}
+\newcommand{\routes}{\pures}
+
+\newcommand{\hessmat}{H^{\game}}
+\newcommand{\vbound}{\debug V_{\ast}}
+\newcommand{\noise}{\debug\xi}
+\newcommand{\noisedev}{\debug\sigma}
+\newcommand{\noisevar}{\noisedev^{2}}
+\newcommand{\snoise}{\psi}
+%\newcommand{\lip}{L}
+\newcommand{\semiflow}{\debug\Phi}
+
+\newcommand{\strong}{\debug K}
+\renewcommand{\sharp}{\debug c}
+
+
+
+%*************************************************************
+%*****    AUTHOR-SPECIFIC COMMANDS
+%*************************************************************
+
+%----------------------------------------------------------------------
+%% PM
+%----------------------------------------------------------------------
+\newcommand{\PM}[1]{\todo[color=DodgerBlue!20!LightGray,author=\textbf{PM},inline]{\small #1\\}}
+\newcommand{\negspace}{\!\!\!}
+
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+
+
+
+
+%*************************************************************
+%*****    MAIN DOCUMENT
+%*************************************************************
+\begin{document}
+
+
+
+%*************************************************************
+%*****    FRONT MATTER AND METADATA
+%*************************************************************
+
+
+%----------------------------------------------------------------------
+%%% TITLE & AUTHORS
+%----------------------------------------------------------------------
+\title
+[NPGA Convergence in Auctions]
+{When does NGPA converge in Bayesian Auction Games?}
+
+
+\author
+[S.~Heidekrüger]
+{Stefan Heidekrüger$^{1}$}
+\address{$^{1}$
+Department of Informatics, Technical University of Munich}
+\email{\href{mailto:stefan.heidekrueger@in.tum.de}{stefan.heidekrueger@in.tum.de}}
+% add more authors here with sequential address number
+
+\input{Thanks}
+
+
+%----------------------------------------------------------------------
+%%% KEYWORDS
+%----------------------------------------------------------------------
+% don't know what this line does exactly
+%\subjclass[2010]{Primary 91A26, 90C15; secondary 90C33, 68Q32.}
+\keywords{%
+Bayesian Game;
+Equilibrium Computation;
+No regret algorithms;
+Reinforcement Learning.
+}
+
+  
+%----------------------------------------------------------------------
+%%% ACRONYMS
+%----------------------------------------------------------------------
+
+
+% see documentation of acronyms package for mor detail
+% in text: \ac (first time full name + abbrev., afterwards only abbrev), \Ac (capitalize), \acf (print full name + acronym), \Acf, \acs (short version), \acl (full name without acronym), \Acl, \acp (as \ac but for plural), \Acp, \acfp, \Acfp, \aclp, \Aclp, \acfi (full name in italic, short form in unshaped), \Acfi
+% \iac, \Iac adds appropriate indefinite article (e.g. a Nash Eq, but an NE)
+% adding a star to any of these \ac* etc does NOT mark them as used for later in the text.
+% plural forms will usually be formed by adding s unless otherwise specified.
+
+\newcommand{\acdef}[1]{\textit{\acl{#1}} \textup{(\acs{#1})}\acused{#1}}
+\newcommand{\acdefp}[1]{\emph{\aclp{#1}} \textup(\acsp{#1}\textup)\acused{#1}}
+\newcommand{\acli}[1]{\textit{\acl{#1}}}
+
+
+%% definition of actual acronyms has been moved to
+%% Acronyms.tex
+
+
+%----------------------------------------------------------------------
+%%% ABSTRACT
+%----------------------------------------------------------------------
+\begin{abstract}
+\input{Abstract}
+\end{abstract}
+\acresetall{}
+
+\maketitle
+
+
+%----------------------------------------------------------------------
+%%% TABLE OF CONTENTS
+%----------------------------------------------------------------------
+%\vspace{-5ex}
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+%\vspace{-5ex}
+
+
+
+%*************************************************************
+%*****    BODY TEXT
+%*************************************************************
+
+%% include files one by one
+
+%----------------------------------------------------------------------
+%%% INTRODUCTION
+%----------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------
+%%% PRELIMINARIES
+%----------------------------------------------------------------------
+\section{Preliminaries}
+\label{sec:preliminaries}
+\input{01_preliminaries}
+
+
+
+%*************************************************************
+%*****    BIBLIOGRAPHY
+%*************************************************************
+\bibliographystyle{apalike}
+%\bibliographystyle{spbasic}
+\bibliography{IEEEabrv,Bibliography}
+
+
+
+%*************************************************************
+%*****    APPENDICES
+%*************************************************************
+\appendix
+
+
+
+%----------------------------------------------------------------------
+%%% APP: AUXILIARY
+%----------------------------------------------------------------------
+\section{Proofs omitted from the main text}
+\label{appendix:proofs}
+\input{a01_proofs}
+
+
+%---------------------------------------------------------
+%%% APP: Acronyms
+%----------------------------
+
+% always include this to compile the acronyms, even if you
+% don't want them to be listed.!
+% if you do NOT want to print the acronyms, set the 
+% [noprint] option on package import
+\include{Acronyms}
+
+
+
+
+
+
+\end{document}
